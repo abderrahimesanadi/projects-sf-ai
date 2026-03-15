@@ -1,5 +1,5 @@
 # Symfony AI - Demo Application
-
+composer require symfony/ai-postgres-store
 Symfony application demoing Symfony AI components.
 
 ## Examples

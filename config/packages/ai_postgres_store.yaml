@@ -1,0 +1,6 @@
+ai:
+    store:
+        postgres:
+            dbal_connection:
+                dsn: default
+
