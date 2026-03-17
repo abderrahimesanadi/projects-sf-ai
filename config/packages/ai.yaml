@@ -92,9 +92,10 @@ ai:
                 technical: ['bug', 'problem', 'technical', 'error', 'code', 'debug']
             fallback: 'fallback'
     store:
-        chromadb:
-            symfonycon:
-                collection: 'symfony_blog'
+        postgres:
+            default:
+              table_name: 'ai_embeddings'
+              dbal_connection: 'doctrine.dbal.default_connection'
     vectorizer:
         mistral:
             platform: 'ai.platform.mistral'
@@ -109,10 +110,10 @@ ai:
                 - 'Symfony\AI\Store\Document\Transformer\TextSplitTransformer'
                 - 'Symfony\AI\Store\Document\Transformer\TextTrimTransformer'
             vectorizer: 'ai.vectorizer.mistral'
-            store: 'ai.store.chromadb.symfonycon'
+            store: 'ai.store.postgres.default'
     retriever:
         blog:
-            store: 'ai.store.chromadb.symfonycon'
+            store: 'ai.store.postgres.default'
             vectorizer: 'ai.vectorizer.mistral'
 
 services:
@@ -122,7 +123,7 @@ services:
 
     Symfony\AI\Agent\Bridge\SimilaritySearch\SimilaritySearch:
         $vectorizer: '@ai.vectorizer.mistral'
-        $store: '@ai.store.chromadb.symfonycon'
+        $store: '@ai.store.postgres.default'
 
     Symfony\AI\Store\Document\Loader\RssFeedLoader: ~
     Symfony\AI\Store\Document\Transformer\TextSplitTransformer: ~
