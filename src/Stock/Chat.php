@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace App\Blog;
+namespace App\Stock;
 
 use Symfony\AI\Agent\AgentInterface;
 use Symfony\AI\Platform\Message\Message;
@@ -20,11 +20,11 @@ use Symfony\Component\HttpFoundation\RequestStack;
 
 final class Chat
 {
-    private const SESSION_KEY = 'blog-chat';
+    private const SESSION_KEY = 'stock-chat';
 
     public function __construct(
         private readonly RequestStack $requestStack,
-        #[Autowire(service: 'ai.agent.blog')]
+        #[Autowire(service: 'ai.agent.stock')]
         private readonly AgentInterface $agent,
     ) {
     }
